@@ -1,16 +1,11 @@
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "ofthelife.h"
 
-#define MAX_SIZE 250
-#define CELL_SIZE 12
-#define GRID_OPACITY 20  // Opacité des lignes de la grille (0-255)
-
-void lire_grille(char *nom_fichier, int grille[MAX_SIZE][MAX_SIZE], int *n, int *m) {
-	FILE *file = fopen(nom_fichier, "r");
+void lire_grille(char *filename, int grille[MAX_SIZE][MAX_SIZE], int *n, int *m) {
+	FILE *file;
 	char ligne[MAX_SIZE];
+	
 	*n = 0;
-
+	file = fopen(filename, "r");
 	if (!file) {
 		perror("Erreur lors de l'ouverture du fichier");
 		exit(EXIT_FAILURE);
@@ -23,7 +18,6 @@ void lire_grille(char *nom_fichier, int grille[MAX_SIZE][MAX_SIZE], int *n, int 
 		}
 		(*n)++;
 	}
-
 	fclose(file);
 }
 
